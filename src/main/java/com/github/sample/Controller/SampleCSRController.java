@@ -1,6 +1,7 @@
 package com.github.sample.Controller;
 
 import com.github.sample.dto.SampleData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +13,14 @@ import java.util.List;
 @RequestMapping("/api")
 public class SampleCSRController {
 
+    @Autowired
+    private MyComponentA myComponentA;
+
     @GetMapping("/sample")
     public List<SampleData> getSampleList(){
         List<SampleData> sampleDataList = new ArrayList<>();
+
+        myComponentA.sayHello();
 
         sampleDataList.add(new SampleData(1,"sample item1"));
         sampleDataList.add(new SampleData(2,"sample item2"));
